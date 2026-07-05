@@ -26,6 +26,22 @@ An end-to-end regression pipeline:
 6. **Evaluation** — the best model (**CatBoost, ordered boosting**) scores the
    unlabeled `EVAL_41.csv`; predictions are written to `EVAL_target01_41.csv`.
 
+### Results
+
+![Model comparison — hold-out R² on target01](assets/model_comparison.png)
+
+| Model | Test R² | Train R² |
+|-------|:-------:|:--------:|
+| **CatBoost** (ordered boosting) | **0.912** | 0.962 |
+| XGBoost | 0.839 | 0.968 |
+| LightGBM | 0.632 | 0.829 |
+| Random Forest | 0.135 | 0.882 |
+| Linear Regression | 0.070 | 0.088 |
+
+CatBoost generalises best on the hold-out set (RMSE ≈ 0.072). The near-zero linear
+baseline confirms the signal is strongly non-linear, which is why the gradient-boosted
+tree ensembles dominate.
+
 ## Task 2 — Interpretable rule model · [`task_2.ipynb`](task_2.ipynb)
 
 Rather than a black box, `target02` is modeled with a tiny, transparent rule set:
